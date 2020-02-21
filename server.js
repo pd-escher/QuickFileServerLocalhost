@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
 });
 
 // APKs
-app.get("/apk/", (req, res) => {
+app.get("/apk", (req, res) => {
 
     const APK = './APK'
     const folder = 'hello'

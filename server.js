@@ -1,10 +1,31 @@
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
+const request = require('request');
+const helmet = require('helmet');
+const bodyParser = require('body-parser');
 
 var express = require('express');
 const app = express();
+
+//Allow all domains to request
+//TODO: Change after buying domain name
 app.use(cors());
+
+//securing HTTP Headers, basic security
+app.use(helmet()); 
+
+//TODO: Security : Express rate limiter as per no of users.
+
+// serve homepage and other static files in 'public folder'
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, "js")));
+
+//parsing JSON requests
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 
 // deployed to heroku
 
@@ -16,7 +37,7 @@ const child_process = require('child_process');
 
 // UI
 app.get('/', function (req, res) {
-    res.status(200).send('Hello World!');
+    res.status(200).sendFile(path.join(__dirname + "/public/index.html"));
 });
 
 // APKs
@@ -32,10 +53,10 @@ app.get("/apk/", (req, res) => {
     });
 
     // zip archive of your folder is ready to download
-    res.download(folderpath() + `/archive.zip`);
+    res.status(200).download(folderpath() + `/archive.zip`);
 });
 
 // Listen
 
 app.listen(process.env.PORT || 8080);
-console.log('Listening on port' + process.env.PORT || 8080);
+console.log('Listening on port' + 8080 || process.env.PORT);

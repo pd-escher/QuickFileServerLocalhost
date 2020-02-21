@@ -1,8 +1,10 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
+const cors = require('cors');
 
 var express = require('express');
 const app = express();
+
 
 // deployed to heroku
 
@@ -14,8 +16,10 @@ const app = express();
 
 // UI
 app.get('/', function (req, res) {
-    res.send('Hello World!');
+    res.status(200).send('Hello World!');
 });
+
+app.use(cors());
 
 // APKs
 // app.get("/apk/", (req, res) => {
@@ -36,5 +40,4 @@ app.get('/', function (req, res) {
 // Listen
 
 app.listen(process.env.PORT || 8080);
-console.log('Listening on localhost:' + port);
-
+console.log('Listening on port' + process.env.PORT || 8080);

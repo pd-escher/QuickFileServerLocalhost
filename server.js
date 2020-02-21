@@ -4,7 +4,7 @@ const path = require('path')
 var express = require('express');
 var app = express();
 
-
+// deployed to heroku
 
 function folderpath() {
     return process.argv.length > 2 ? process.argv[2] : './APK/hello'

@@ -18,16 +18,11 @@ app.use(helmet());
 //TODO: Security : Express rate limiter as per no of users.
 
 // serve homepage and other static files in 'public folder'
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, "js")));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 //parsing JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-
-
-// deployed to heroku
 
 function folderpath() {
     return process.argv.length > 2 ? process.argv[2] : './APK/hello'
@@ -36,8 +31,8 @@ function folderpath() {
 const child_process = require('child_process');
 
 // UI
-app.get('/', function (req, res) {
-    res.status(200).sendFile(path.join(__dirname + "/public/index.html"));
+app.get('*', function (req, res) {
+    res.status(200).sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 // APKs
@@ -57,6 +52,5 @@ app.get("/apk", (req, res) => {
 });
 
 // Listen
-
 app.listen(process.env.PORT || 8080);
 console.log('Listening on port' + 8080 || process.env.PORT);

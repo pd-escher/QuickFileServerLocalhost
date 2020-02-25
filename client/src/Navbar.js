@@ -8,6 +8,7 @@ import {
 import Home from './Tabs/Home/Home'
 import Apps from './Tabs/Apps/Apps'
 import Contact from './Tabs/Contact/Contact'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Navbar = () => {
@@ -16,15 +17,9 @@ const Navbar = () => {
             <div>
                 <nav>
                     <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/apps">Apps</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact">Contact</Link>
-                        </li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/apps">Apps</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
                     </ul>
                 </nav>
 
@@ -32,13 +27,13 @@ const Navbar = () => {
             renders the first one that matches the current URL. */}
                 <Switch>
                     <Route path="/apps">
-                        <Apps/>
+                        <Apps />
                     </Route>
                     <Route path="/contact">
-                        <Contact/>
+                        <Contact />
                     </Route>
                     <Route path="/">
-                        <Home/>
+                        <Home />
                     </Route>
                 </Switch>
             </div>

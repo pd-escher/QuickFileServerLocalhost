@@ -24,8 +24,8 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-function folderpath() {
-    return process.argv.length > 2 ? process.argv[2] : './APK/hello'
+function folderpath(appname) {
+    return process.argv.length > 2 ? process.argv[2] : './APK/'+appname
 }
 
 const child_process = require('child_process');
@@ -36,19 +36,24 @@ app.get('/', function (req, res) {
 });
 
 // APKs
-app.get("/apk", (req, res) => {
-
-    const APK = './APK'
-    const folder = 'hello'
+app.get("/apk/:appname", (req, res) => {
+    var appname = req.params.appname
+    var appPath = folderpath(req.params.appname)
 
     // we want to use a sync exec to prevent returning response
     // before the end of the compression process
-    child_process.execSync(`zip -r archive *`, {
-        cwd: folderpath()
-    });
 
-    // zip archive of your folder is ready to download
-    res.status(200).download(folderpath() + `/archive.zip`);
+    try {
+        child_process.execSync(`zip -r ${appname} *`, {
+            cwd: appPath
+        });
+        
+        var zipName = appPath.toString() + `/${appname}.zip`
+        // zip archive of your folder is ready to download
+        res.status(200).download(zipName);
+    } catch(e) {
+        res.send(`Resource Not Found: ${appname}`)
+    }
 });
 
 // Listen

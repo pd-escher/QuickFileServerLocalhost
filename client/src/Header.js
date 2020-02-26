@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
     return (
-        <div>
-            <h1 class="jumbotron text-center">Pranav Dhoolia</h1>
+        <div class="jumbotron header">
+            <h1 class="text-center">PRANAV DHOOLIA</h1>
         </div>
     )
 }

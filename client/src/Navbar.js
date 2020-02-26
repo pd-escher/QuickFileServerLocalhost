@@ -14,12 +14,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Navbar = () => {
     return (
         <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/apps">Apps</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
+            <div class="navv">
+                <nav class="d-flex justify-content-around navbar navbar-expand-lg navbar-dark">
+                    <ul class="navbar-nav">
+                        <li class='p-3 flex-grow-1 nav-item'><Link className='nav-link' to="/">Home</Link></li>
+                        <li class='p-3 flex-grow-1 nav-item'><Link className='nav-item nav-link' to="/apps">Apps</Link></li>
+                        <li class='p-3 flex-grow-1 nav-item'><Link className='nav-item nav-link' to="/contact">Contact</Link></li>
                     </ul>
                 </nav>
 

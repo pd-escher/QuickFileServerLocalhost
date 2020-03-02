@@ -17,9 +17,9 @@ const Navbar = () => {
             <span class="topnav-item">
                 <Link class="topnav-link" style={{color: "white", textDecoration : "none"}} to="/">APKs</Link>
             </span>
-            <span class="topnav-item">
+            {/* <span class="topnav-item">
                 <Link class="topnav-link" style={{color: "white", textDecoration : "none"}} to="/contact">Contact</Link>
-            </span>
+            </span> */}
         </div>
     )
 }
